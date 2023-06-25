@@ -44,4 +44,19 @@ public class CalculateDiscountTest {
 		assertEquals(95.0, calculateDiscount.getTotalPrice(discount, sdbList));
 	}
 
+	@Test
+	public void buyingThreeCopiesOfDifferentBook() {
+		CalculateDiscount calculateDiscount = new CalculateDiscount();
+		List<String> sdbList = new ArrayList<>();
+		String book = SOFTWARE_DEVELOPMENT_BOOK_I;
+		String book2 = SOFTWARE_DEVELOPMENT_BOOK_II;
+		String book3 = SOFTWARE_DEVELOPMENT_BOOK_III;
+		double discount = 10;
+		sdbList.add(book);
+		sdbList.add(book2);
+		sdbList.add(book3);
+		assertEquals(135, calculateDiscount.getTotalPrice(discount, sdbList));
+
+	}
+
 }
