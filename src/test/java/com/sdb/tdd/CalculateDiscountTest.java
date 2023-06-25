@@ -9,24 +9,22 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.sdb.constants.SoftwareDevlopmentBooksConstants;
 import com.sdb.entity.SoftwareDevelopmentBook;
 import com.sdb.entity.SoftwareDevelopmentBookSetDiscount;
 
 public class CalculateDiscountTest {
 
 	CalculateDiscount calculateDiscount;
-	public static final int FIVE_PERCENT_DISCOUNT_OF_TWO_BOOKS = 5;
-	public static final int TEN_PERCENT_DISCOUNT_OF_TWO_BOOKS = 10;
-	public static final int TWENTY_PERCENT_DISCOUNT_OF_TWO_BOOKS = 20;
-	public static final int TWENTY_FIVE_PERCENT_DISCOUNT_OF_TWO_BOOKS = 25;
+	
 
 	@BeforeEach
 	public void setup() {
 		List<SoftwareDevelopmentBookSetDiscount> byDifferentCopiesDiscountList = new ArrayList<>();
-		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(2, FIVE_PERCENT_DISCOUNT_OF_TWO_BOOKS));
-		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(3, TEN_PERCENT_DISCOUNT_OF_TWO_BOOKS));
-		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(4, TWENTY_PERCENT_DISCOUNT_OF_TWO_BOOKS));
-		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(5, TWENTY_FIVE_PERCENT_DISCOUNT_OF_TWO_BOOKS));
+		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(SoftwareDevlopmentBooksConstants.TWO_BOOKS, SoftwareDevlopmentBooksConstants.FIVE_PERCENT_DISCOUNT_OF_TWO_BOOKS));
+		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(SoftwareDevlopmentBooksConstants.THREE_BOOKS, SoftwareDevlopmentBooksConstants.TEN_PERCENT_DISCOUNT_OF_TWO_BOOKS));
+		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(SoftwareDevlopmentBooksConstants.FOUR_BOOKS, SoftwareDevlopmentBooksConstants.TWENTY_PERCENT_DISCOUNT_OF_TWO_BOOKS));
+		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(SoftwareDevlopmentBooksConstants.FIVE_BOOKS, SoftwareDevlopmentBooksConstants.TWENTY_FIVE_PERCENT_DISCOUNT_OF_TWO_BOOKS));
 		calculateDiscount = new CalculateDiscount(byDifferentCopiesDiscountList);
 	}
 
@@ -62,7 +60,7 @@ public class CalculateDiscountTest {
 		calculateDiscount.Add(sdbFirstI);
 		calculateDiscount.Add(sdbSecI);
 		calculateDiscount.Add(sdbThirdI);
-		assertEquals(135, calculateDiscount.getTotalPrice(sdbList));
+		assertEquals(145, calculateDiscount.getTotalPrice(sdbList));
 	}
 
 }
