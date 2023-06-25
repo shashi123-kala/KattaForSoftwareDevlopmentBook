@@ -14,7 +14,7 @@ import com.sdb.entity.SoftwareDevelopmentBookSetDiscount;
 
 public class CalculateDiscountTest {
 
-	CalculateDiscount calculateDiscount = new CalculateDiscount();
+	CalculateDiscount calculateDiscount;
 
 	@BeforeEach
 	public void setup() {
@@ -23,6 +23,7 @@ public class CalculateDiscountTest {
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(3, 10));
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(4, 20));
 		byDifferentCopiesDiscountList.add(new SoftwareDevelopmentBookSetDiscount(5, 25));
+		calculateDiscount = new CalculateDiscount(byDifferentCopiesDiscountList);
 	}
 
 	@Test
@@ -33,10 +34,9 @@ public class CalculateDiscountTest {
 	@Test
 	public void buyingOneBook() {
 		List<SoftwareDevelopmentBook> sdbList = new ArrayList<>();
-		double discount = 0.0;
 		SoftwareDevelopmentBook sdbFirstI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIBook();
-		sdbList.add(sdbFirstI);
-		assertEquals(50.0, calculateDiscount.getTotalPrice(discount, sdbList));
+		calculateDiscount.Add(sdbFirstI);
+		assertEquals(50.0, calculateDiscount.getTotalPrice(sdbList));
 	}
 
 	@Test
@@ -44,10 +44,9 @@ public class CalculateDiscountTest {
 		List<SoftwareDevelopmentBook> sdbList = new ArrayList<>();
 		SoftwareDevelopmentBook sdbFirstI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbSecI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIIBook();
-		double discount = 5;
-		sdbList.add(sdbFirstI);
-		sdbList.add(sdbSecI);
-		assertEquals(95.0, calculateDiscount.getTotalPrice(discount, sdbList));
+		calculateDiscount.Add(sdbFirstI);
+		calculateDiscount.Add(sdbSecI);
+		assertEquals(95.0, calculateDiscount.getTotalPrice(sdbList));
 	}
 
 	@Test
@@ -56,11 +55,10 @@ public class CalculateDiscountTest {
 		SoftwareDevelopmentBook sdbFirstI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIBook();
 		SoftwareDevelopmentBook sdbSecI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIIBook();
 		SoftwareDevelopmentBook sdbThirdI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIIBook();
-		double discount = 10;
-		sdbList.add(sdbFirstI);
-		sdbList.add(sdbSecI);
-		sdbList.add(sdbThirdI);
-		assertEquals(135, calculateDiscount.getTotalPrice(discount, sdbList));
+		calculateDiscount.Add(sdbFirstI);
+		calculateDiscount.Add(sdbSecI);
+		calculateDiscount.Add(sdbThirdI);
+		assertEquals(135, calculateDiscount.getTotalPrice(sdbList));
 	}
 
 }
