@@ -2,9 +2,11 @@ package com.sdb.tdd;
 
 import java.util.List;
 
+import com.sdb.entity.SoftwareDevelopmentBook;
+
 public class CalculateDiscount {
 
-	public double getTotalPrice(double dis, List<String> sdbList) {
+	public double getTotalPrice(double dis, List<SoftwareDevelopmentBook> sdbList) {
 		double amtAfterDis = 0.00;
 		if (sdbList.size() == 1) {
 			amtAfterDis = 50 - (50 * (dis / 100));

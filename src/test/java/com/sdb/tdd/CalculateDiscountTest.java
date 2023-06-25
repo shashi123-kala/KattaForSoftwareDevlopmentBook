@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.sdb.entity.SoftwareDevelopmentBook;
+
 public class CalculateDiscountTest {
 
 	public static final String SOFTWARE_DEVELOPMENT_BOOK_I = "Clean Code (Robert Martin, 2008)";
@@ -24,36 +26,35 @@ public class CalculateDiscountTest {
 
 	@Test
 	public void buyingOneBook() {
-		List<String> sdbList = new ArrayList<>();
-		String book = SOFTWARE_DEVELOPMENT_BOOK_I;
-		sdbList.add(book);
-		double discount = 0.00;
+		List<SoftwareDevelopmentBook> sdbList = new ArrayList<>();
+		double discount = 0.0;
+		SoftwareDevelopmentBook sdbFirstI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIBook();
+		sdbList.add(sdbFirstI);
 		assertEquals(50.0, calculateDiscount.getTotalPrice(discount, sdbList));
 	}
 
 	@Test
 	public void buyingTwoCopiesOfDifferentBook() {
-		List<String> sdbList = new ArrayList<>();
-		String book = SOFTWARE_DEVELOPMENT_BOOK_I;
-		String book2 = SOFTWARE_DEVELOPMENT_BOOK_II;
+		List<SoftwareDevelopmentBook> sdbList = new ArrayList<>();
+		SoftwareDevelopmentBook sdbFirstI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIBook();
+		SoftwareDevelopmentBook sdbSecI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIIBook();
 		double discount = 5;
-		sdbList.add(book);
-		sdbList.add(book2);
+		sdbList.add(sdbFirstI);
+		sdbList.add(sdbSecI);
 		assertEquals(95.0, calculateDiscount.getTotalPrice(discount, sdbList));
 	}
 
 	@Test
 	public void buyingThreeCopiesOfDifferentBook() {
-		List<String> sdbList = new ArrayList<>();
-		String book = SOFTWARE_DEVELOPMENT_BOOK_I;
-		String book2 = SOFTWARE_DEVELOPMENT_BOOK_II;
-		String book3 = SOFTWARE_DEVELOPMENT_BOOK_III;
+		List<SoftwareDevelopmentBook> sdbList = new ArrayList<>();
+		SoftwareDevelopmentBook sdbFirstI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIBook();
+		SoftwareDevelopmentBook sdbSecI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIIBook();
+		SoftwareDevelopmentBook sdbThirdI = SoftwareDevlopmentBookList.GivenASoftwareDevelopmentIIBook();
 		double discount = 10;
-		sdbList.add(book);
-		sdbList.add(book2);
-		sdbList.add(book3);
+		sdbList.add(sdbFirstI);
+		sdbList.add(sdbSecI);
+		sdbList.add(sdbThirdI);
 		assertEquals(135, calculateDiscount.getTotalPrice(discount, sdbList));
-
 	}
 
 }
